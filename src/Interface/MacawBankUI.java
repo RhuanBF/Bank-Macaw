@@ -5,6 +5,7 @@ import java.awt.*;
 public class MacawBankUI extends JFrame {
 
     // Definição da paleta de cores baseada na imagem
+    //Teste
     private static final Color COLOR_ORANGE = new Color(255, 106, 0);
     private static final Color COLOR_BACKGROUND = new Color(247, 249, 250);
     private static final Color COLOR_CARD_BG = Color.WHITE;
