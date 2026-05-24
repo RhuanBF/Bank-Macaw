@@ -1,148 +1,358 @@
 package Interface;
 
 import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class TelaCadastro extends JFrame {
 
     private JTextField txtNome;
-    private JTextField txtCpf;
-    private JTextField txtNumero;
-    private JTextField txtData;
+    private JFormattedTextField txtCPF;
+    private JTextField txtEmail;
+    private JFormattedTextField txtCelular;
+    private JFormattedTextField txtDataNascimento;
     private JPasswordField txtSenha;
-    private JPasswordField txtConfirmarSenha;
-
-    private JButton btnCadastrar;
-    private JLabel lblVoltar;
+    private JCheckBox chkTermos;
 
     public TelaCadastro() {
         initComponents();
     }
 
+    // Aplica um estilo simples e moderno aos campos
+    private void estilizarCampo(JComponent campo) {
+        campo.setBorder(BorderFactory.createCompoundBorder(
+                new LineBorder(new Color(210, 210, 210), 1, true),
+                BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+        campo.setFont(new Font("Arial", Font.PLAIN, 14));
+    }
+
+    // Verifica se foi informado nome e sobrenome
+    private boolean validarNome(String nome) {
+        String[] partes = nome.trim().split("\\s+");
+        return partes.length >= 2;
+    }
+
+  // Validação completa do CPF utilizando os dígitos verificadores
+private boolean validarCPF(String cpf) {
+
+    cpf = cpf.replaceAll("\\D", "");
+
+    // CPF precisa ter exatamente 11 números
+    if (cpf.length() != 11) {
+        return false;
+    }
+
+    // Elimina CPFs com todos os números iguais
+    if (cpf.matches("(\\d)\\1{10}")) {
+        return false;
+    }
+
+    try {
+
+        // Cálculo do primeiro dígito verificador
+        int soma = 0;
+
+        for (int i = 0; i < 9; i++) {
+            soma += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
+        }
+
+        int resto = 11 - (soma % 11);
+
+        int digito1;
+
+        if (resto >= 10) {
+            digito1 = 0;
+        } else {
+            digito1 = resto;
+        }
+
+        // Cálculo do segundo dígito verificador
+        soma = 0;
+
+        for (int i = 0; i < 10; i++) {
+            soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
+        }
+
+        resto = 11 - (soma % 11);
+
+        int digito2;
+
+        if (resto >= 10) {
+            digito2 = 0;
+        } else {
+            digito2 = resto;
+        }
+
+        // Compara os dígitos calculados com os informados
+        return digito1 == Character.getNumericValue(cpf.charAt(9))
+                && digito2 == Character.getNumericValue(cpf.charAt(10));
+
+    } catch (Exception e) {
+
+        return false;
+
+    }
+}
+
+    // Verifica se o celular possui 11 números
+    private boolean validarCelular(String celular) {
+        celular = celular.replaceAll("\\D", "");
+        return celular.length() == 11;
+    }
+
+    // Validação simples de e-mail
+    private boolean validarEmail(String email) {
+        return email.contains("@") && email.contains(".");
+    }
+
+    // Verifica se o usuário possui 18 anos ou mais
+    private boolean validarMaiorIdade(String dataNascimento) {
+        try {
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate nascimento =
+                    LocalDate.parse(dataNascimento, formatter);
+
+            int idade =
+                    Period.between(nascimento, LocalDate.now()).getYears();
+
+            return idade >= 18;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     private void initComponents() {
 
-        // CONFIGURAÇÕES DA JANELA
         setTitle("Macaw Bank - Cadastro");
-        setSize(550, 750);
+        setSize(1280, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
-        // PAINEL PRINCIPAL
-        JPanel painel = new JPanel();
-        painel.setLayout(null);
-        painel.setBackground(new Color(240, 240, 240));
+        JPanel painel = new JPanel(null);
+        painel.setBackground(new Color(235, 235, 235));
 
-        // TÍTULO
+        // Logo do sistema
+        ImageIcon iconeOriginal = new ImageIcon(
+                getClass().getResource("/SistemaBancarioFrontEnd/Logo Macaw PNG 100px.png")
+        );
+
+        Image imagem = iconeOriginal.getImage()
+                .getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+
+        JLabel lblLogo = new JLabel(new ImageIcon(imagem));
+        lblLogo.setBounds(270, 35, 90, 90);
+        painel.add(lblLogo);
+
         JLabel lblTitulo = new JLabel("Cadastro");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 40));
-        lblTitulo.setForeground(new Color(255, 102, 0));
-        lblTitulo.setBounds(160, 40, 250, 50);
-
-        // NOME
-        JLabel lblNome = new JLabel("Nome:");
-        lblNome.setFont(new Font("Arial", Font.BOLD, 24));
-        lblNome.setBounds(60, 130, 200, 30);
-
-        txtNome = new JTextField();
-        txtNome.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtNome.setBounds(60, 170, 420, 45);
-        txtNome.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
-
-        // CPF
-        JLabel lblCpf = new JLabel("CPF:");
-        lblCpf.setFont(new Font("Arial", Font.BOLD, 24));
-        lblCpf.setBounds(60, 230, 200, 30);
-
-        txtCpf = new JTextField();
-        txtCpf.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtCpf.setBounds(60, 270, 420, 45);
-        txtCpf.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
-
-        // NÚMERO
-        JLabel lblNumero = new JLabel("Número:");
-        lblNumero.setFont(new Font("Arial", Font.BOLD, 24));
-        lblNumero.setBounds(60, 330, 200, 30);
-
-        txtNumero = new JTextField();
-        txtNumero.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtNumero.setBounds(60, 370, 420, 45);
-        txtNumero.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
-
-        // DATA
-        JLabel lblData = new JLabel("Data de Nascimento:");
-        lblData.setFont(new Font("Arial", Font.BOLD, 24));
-        lblData.setBounds(60, 430, 300, 30);
-
-        txtData = new JTextField();
-        txtData.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtData.setBounds(60, 470, 420, 45);
-        txtData.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
-
-        // SENHA
-        JLabel lblSenha = new JLabel("Senha:");
-        lblSenha.setFont(new Font("Arial", Font.BOLD, 24));
-        lblSenha.setBounds(60, 530, 200, 30);
-
-        txtSenha = new JPasswordField();
-        txtSenha.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtSenha.setBounds(60, 570, 420, 45);
-        txtSenha.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
-
-        // CONFIRMAR SENHA
-        JLabel lblConfirmarSenha = new JLabel("Confirmar Senha:");
-        lblConfirmarSenha.setFont(new Font("Arial", Font.BOLD, 24));
-        lblConfirmarSenha.setBounds(60, 630, 250, 30);
-
-        txtConfirmarSenha = new JPasswordField();
-        txtConfirmarSenha.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtConfirmarSenha.setBounds(60, 670, 420, 45);
-        txtConfirmarSenha.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
-
-        // BOTÃO CADASTRAR
-        btnCadastrar = new JButton("Cadastrar");
-        btnCadastrar.setBounds(165, 740, 200, 50);
-        btnCadastrar.setBackground(new Color(255, 102, 0));
-        btnCadastrar.setForeground(Color.WHITE);
-        btnCadastrar.setFont(new Font("Arial", Font.BOLD, 22));
-        btnCadastrar.setFocusPainted(false);
-        btnCadastrar.setBorderPainted(false);
-        btnCadastrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-        // VOLTAR
-        lblVoltar = new JLabel("Voltar para login");
-        lblVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblVoltar.setForeground(Color.DARK_GRAY);
-        lblVoltar.setBounds(185, 810, 200, 30);
-        lblVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-        // ADICIONAR COMPONENTES
+        lblTitulo.setBounds(390, 40, 300, 45);
         painel.add(lblTitulo);
 
-        painel.add(lblNome);
-        painel.add(txtNome);
+        JLabel lblSubtitulo = new JLabel("Preencha os dados para criar o seu usuário.");
+        lblSubtitulo.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblSubtitulo.setBounds(390, 90, 400, 25);
+        painel.add(lblSubtitulo);
 
-        painel.add(lblCpf);
-        painel.add(txtCpf);
+        // Card central do formulário
+        JPanel card = new JPanel(null);
+        card.setBackground(Color.WHITE);
+        card.setBorder(new CompoundBorder(
+                new LineBorder(new Color(220, 220, 220)),
+                new EmptyBorder(15, 15, 15, 15)
+        ));
 
-        painel.add(lblNumero);
-        painel.add(txtNumero);
+        card.setBounds(340, 145, 600, 430);
+        painel.add(card);
 
-        painel.add(lblData);
-        painel.add(txtData);
+        int x = 35;
+        int largura = 520;
+        int alturaCampo = 32;
 
-        painel.add(lblSenha);
-        painel.add(txtSenha);
+        Font fonteLabel = new Font("Arial", Font.PLAIN, 14);
 
-        painel.add(lblConfirmarSenha);
-        painel.add(txtConfirmarSenha);
+        try {
+
+            JLabel lblNome = new JLabel("Nome");
+            lblNome.setFont(fonteLabel);
+            lblNome.setBounds(x, 15, 150, 20);
+            card.add(lblNome);
+
+            txtNome = new JTextField();
+            txtNome.setBounds(x, 38, largura, alturaCampo);
+            estilizarCampo(txtNome);
+            card.add(txtNome);
+
+            JLabel lblCPF = new JLabel("CPF");
+            lblCPF.setFont(fonteLabel);
+            lblCPF.setBounds(x, 75, 150, 20);
+            card.add(lblCPF);
+
+            MaskFormatter cpfMask = new MaskFormatter("###.###.###-##");
+            cpfMask.setPlaceholderCharacter('_');
+
+            txtCPF = new JFormattedTextField(cpfMask);
+            txtCPF.setBounds(x, 98, 220, alturaCampo);
+            estilizarCampo(txtCPF);
+            card.add(txtCPF);
+
+            JLabel lblEmail = new JLabel("E-mail");
+            lblEmail.setFont(fonteLabel);
+            lblEmail.setBounds(x, 135, 150, 20);
+            card.add(lblEmail);
+
+            txtEmail = new JTextField();
+            txtEmail.setBounds(x, 158, largura, alturaCampo);
+            estilizarCampo(txtEmail);
+            card.add(txtEmail);
+
+            JLabel lblCelular = new JLabel("Celular");
+            lblCelular.setFont(fonteLabel);
+            lblCelular.setBounds(x, 195, 150, 20);
+            card.add(lblCelular);
+
+            MaskFormatter celularMask = new MaskFormatter("(##) #####-####");
+            celularMask.setPlaceholderCharacter('_');
+
+            txtCelular = new JFormattedTextField(celularMask);
+            txtCelular.setBounds(x, 218, 220, alturaCampo);
+            estilizarCampo(txtCelular);
+            card.add(txtCelular);
+
+            JLabel lblData = new JLabel("Data de Nascimento");
+            lblData.setFont(fonteLabel);
+            lblData.setBounds(x, 255, 180, 20);
+            card.add(lblData);
+
+            MaskFormatter dataMask = new MaskFormatter("##/##/####");
+            dataMask.setPlaceholderCharacter('_');
+
+            txtDataNascimento = new JFormattedTextField(dataMask);
+            txtDataNascimento.setBounds(x, 278, 160, alturaCampo);
+            estilizarCampo(txtDataNascimento);
+            card.add(txtDataNascimento);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        JLabel lblSenha = new JLabel("Senha");
+        lblSenha.setFont(fonteLabel);
+        lblSenha.setBounds(x, 315, 150, 20);
+        card.add(lblSenha);
+
+        txtSenha = new JPasswordField();
+        txtSenha.setBounds(x, 338, largura, alturaCampo);
+        estilizarCampo(txtSenha);
+        card.add(txtSenha);
+
+        chkTermos = new JCheckBox("Li e aceito os Termos de Uso");
+        chkTermos.setBackground(Color.WHITE);
+        chkTermos.setBounds(x, 380, 250, 20);
+        card.add(chkTermos);
+
+        JButton btnCadastrar = new JButton("Cadastrar");
+        btnCadastrar.setBounds(470, 600, 130, 35);
+        btnCadastrar.setBackground(new Color(255, 102, 0));
+        btnCadastrar.setForeground(Color.WHITE);
+        btnCadastrar.setFocusPainted(false);
+        btnCadastrar.setFont(new Font("Arial", Font.BOLD, 13));
+
+        btnCadastrar.addActionListener(e -> {
+
+    String nome = txtNome.getText().trim();
+    String cpf = txtCPF.getText();
+    String email = txtEmail.getText().trim();
+    String celular = txtCelular.getText();
+    String dataNascimento = txtDataNascimento.getText();
+    String senha = new String(txtSenha.getPassword());
+
+    // Aqui serão armazenados todos os erros encontrados
+    String erros = "";
+
+    if (!validarNome(nome)) {
+        erros += "- Digite nome e sobrenome.\n";
+    }
+
+    if (!validarCPF(cpf)) {
+        erros += "- CPF inválido.\n";
+    }
+
+    if (!validarEmail(email)) {
+        erros += "- Digite um e-mail válido.\n";
+    }
+
+    if (!validarCelular(celular)) {
+        erros += "- Celular deve possuir 11 números.\n";
+    }
+
+    if (!validarMaiorIdade(dataNascimento)) {
+        erros += "- É necessário ter 18 anos ou mais.\n";
+    }
+
+    if (senha.length() < 8) {
+        erros += "- A senha deve possuir no mínimo 8 caracteres.\n";
+    }
+
+    if (!chkTermos.isSelected()) {
+        erros += "- Você deve aceitar os Termos de Uso.\n";
+    }
+
+    // Se houver qualquer erro, mostra todos de uma vez
+    if (!erros.isEmpty()) {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Foram encontrados os seguintes problemas:\n\n" + erros,
+                "Erro no cadastro",
+                JOptionPane.ERROR_MESSAGE);
+
+    } else {
+JOptionPane.showMessageDialog(
+        this,
+        "Cadastro realizado com sucesso!\nFaça login para acessar sua conta.",
+        "Sucesso",
+        JOptionPane.INFORMATION_MESSAGE);
+
+// Abre a tela de login
+new TelLogin().setVisible(true);
+
+// Fecha a tela de cadastro
+dispose();
+
+    }
+
+});
 
         painel.add(btnCadastrar);
-        painel.add(lblVoltar);
+
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBounds(650, 600, 130, 35);
+        btnCancelar.setFont(new Font("Arial", Font.BOLD, 13));
+        
+
+       btnCancelar.addActionListener(e -> {
+
+    // Abre a tela de login
+    new TelLogin().setVisible(true);
+
+    // Fecha a tela de cadastro
+    dispose();
+
+});
+
+        painel.add(btnCancelar);
 
         add(painel);
-
-        setSize(550, 900);
     }
 
     public static void main(String[] args) {
