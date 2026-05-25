@@ -10,6 +10,7 @@ public class ModeloCliente {
     private String email;
     private String senha;
     private Integer cpf;
+    private Integer dtnascimento;
 
     public Integer getId() {
         return id;
@@ -58,6 +59,14 @@ public class ModeloCliente {
         this.cpf = cpf;
     }
     
+    public Integer getDtnascimento(){
+        return dtnascimento;
+    }
+    
+    public void setDtnascimento (Integer dtnascimento){
+        this.dtnascimento = dtnascimento;
+    }
+        
     }
     
 }
