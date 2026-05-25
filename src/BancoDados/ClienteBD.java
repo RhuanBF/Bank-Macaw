@@ -29,7 +29,7 @@ public class ClienteBD {
     
     public void addCliente(Cliente novocliente){ //void significa que essa função não irá retornar nenhum valor
         //INSERT INTO é para adicionar valores na tabela
-        String s = "INSERT INTO clientes (nome),(celular),(senha),(cpf),(email)" +
+        String s = "INSERT INTO clientes (nome),(celular),(senha),(cpf),(email),(data)" +
                 "VALUES (?,?,?,?,?)";
         
         //Uso do Try para caso dê erro.

@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/Backendverificacao/Verificacao.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/Interface/MacawBankUI.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/Interface/TelLogin.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/BancoDados/ClienteBD.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/SistemaBancarioFrontEnd/SistemabancarioFrontEnd.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/BancoDados/ModeloCliente.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/BancoDados/TesteConexaoBD.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/MarcawBank/src/BancoDados/ConexaoPostgre.java</file>
+            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/Interface/TelaCadastro.java</file>
+            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/BancoDados/ClienteBD.java</file>
+            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/BancoDados/ConexaoPostgre.java</file>
+            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/SistemaBancarioFrontEnd/SistemabancarioFrontEnd.java</file>
+            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/SistemaBancarioFrontEnd/arara.jpeg</file>
+            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/Interface/TelaLogin.java</file>
         </group>
     </open-files>
 </project-private>
