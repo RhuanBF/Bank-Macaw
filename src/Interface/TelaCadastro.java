@@ -324,7 +324,7 @@ JOptionPane.showMessageDialog(
         JOptionPane.INFORMATION_MESSAGE);
 
 // Abre a tela de login
-new TelLogin().setVisible(true);
+new TelaLogin().setVisible(true);
 
 // Fecha a tela de cadastro
 dispose();
@@ -343,7 +343,7 @@ dispose();
        btnCancelar.addActionListener(e -> {
 
     // Abre a tela de login
-    new TelLogin().setVisible(true);
+    new TelaLogin().setVisible(true);
 
     // Fecha a tela de cadastro
     dispose();
