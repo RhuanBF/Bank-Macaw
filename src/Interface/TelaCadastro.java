@@ -8,6 +8,9 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import BancoDados.ClienteBD;
+import BancoDados.ModeloCliente;
+import BancoDados.ModeloCliente.Cliente;
 
 public class TelaCadastro extends JFrame {
 
@@ -322,6 +325,19 @@ JOptionPane.showMessageDialog(
         "Cadastro realizado com sucesso!\nFaça login para acessar sua conta.",
         "Sucesso",
         JOptionPane.INFORMATION_MESSAGE);
+
+ModeloCliente.Cliente novo = new ModeloCliente().new Cliente();
+
+novo.setNome(nome);
+novo.setCpf(Integer.parseInt(cpf));
+novo.setEmail(email);
+novo.setCelular(celular);
+novo.setSenha(senha);
+
+ClienteBD registro = new ClienteBD();
+
+registro.addCliente(novo);
+
 
 // Abre a tela de login
 new TelaLogin().setVisible(true);
