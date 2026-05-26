@@ -333,6 +333,7 @@ novo.setCpf(cpf);
 novo.setEmail(email);
 novo.setCelular(celular);
 novo.setSenha(senha);
+novo.setDtnascimento(dataNascimento);
 
 ClienteBD registro = new ClienteBD();
 
