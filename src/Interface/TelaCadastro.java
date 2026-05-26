@@ -358,12 +358,11 @@ dispose();
         
 
        btnCancelar.addActionListener(e -> {
+ // Abre a tela de login
+new TelaLogin().setVisible(true);
 
-    // Abre a tela de login
-    new TelaLogin().setVisible(true);
-
-    // Fecha a tela de cadastro
-    dispose();
+// Fecha a tela de cadastro
+dispose();
 
 });
 
