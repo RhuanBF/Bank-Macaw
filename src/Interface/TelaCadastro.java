@@ -329,7 +329,7 @@ JOptionPane.showMessageDialog(
 ModeloCliente.Cliente novo = new ModeloCliente().new Cliente();
 
 novo.setNome(nome);
-novo.setCpf(Integer.parseInt(cpf));
+novo.setCpf(cpf);
 novo.setEmail(email);
 novo.setCelular(celular);
 novo.setSenha(senha);
