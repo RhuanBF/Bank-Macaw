@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/Interface/TelaCadastro.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/BancoDados/ClienteBD.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/BancoDados/ConexaoPostgre.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/SistemaBancarioFrontEnd/SistemabancarioFrontEnd.java</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/SistemaBancarioFrontEnd/arara.jpeg</file>
-            <file>file:/C:/Users/Brenda/Macaw-Bank/Bank-Macaw/src/Interface/TelaLogin.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/Interface/TelaLogin.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/Interface/TelaCadastro.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/Interface/TelaExtrato.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/BancoDados/ConexaoPostgre.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/BancoDados/ClienteBD.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/BancoDados/ModeloCliente.java</file>
+            <file>file:/C:/Users/gusta/OneDrive/Desktop/Projetos%20-%20Estudos/Bank-Macaw/src/BancoDados/TesteConexaoBD.java</file>
         </group>
     </open-files>
 </project-private>

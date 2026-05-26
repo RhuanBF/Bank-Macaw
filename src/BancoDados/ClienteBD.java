@@ -29,7 +29,7 @@ public class ClienteBD {
     
     public void addCliente(Cliente novocliente){ //void significa que essa função não irá retornar nenhum valor
         //INSERT INTO é para adicionar valores na tabela
-        String s = "INSERT INTO clientes (nome),(celular),(senha),(cpf),(email),(data)" +
+        String s = "INSERT INTO clientes (nome, celular, senha, cpf, email, data)" +
                 "VALUES (?,?,?,?,?,?)";
         
         //Uso do Try para caso dê erro.
@@ -38,11 +38,11 @@ public class ClienteBD {
             
             //Agora vamos preencher os valores das colunas com o que o usuário preencheu no frontend
             ps.setString(1,novocliente.getNome());
-            ps.setInt(2, novocliente.getCelular());
+            ps.setString(2, novocliente.getCelular());
             ps.setString(3,novocliente.getSenha());
-            ps.setInt(4,novocliente.getCpf());
+            ps.setString(4,novocliente.getCpf());
             ps.setString(5,novocliente.getEmail()); 
-            ps.setInt(6,novocliente.getDtnascimento());
+            ps.setString(6,novocliente.getDtnascimento());
             ps.execute();
             ps.close();
             
