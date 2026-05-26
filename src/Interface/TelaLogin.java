@@ -117,25 +117,37 @@ public class TelaLogin extends JFrame {
         });
     }
     
-    private void fazerLogin() {
-        String usuario = txtUsuario.getText();
-        String senha = new String(txtSenha.getPassword());
-        
-        Verificacao verificacao = new Verificacao();
-        String msg = verificacao.vitao(usuario, senha);
-       
-        //dar resposta de erros diferentes(conversar com o pessoal Gustavo e Rhuan. BD)
-         
-        if (msg.contains("O seu login")) {
-        
-            JOptionPane.showMessageDialog(null, msg); 
-       }else{
-            JOptionPane.showMessageDialog(null, msg,"Erro",JOptionPane.ERROR_MESSAGE);
-            txtSenha.setText("");
-            txtUsuario.setText("");
-            abrirCadastro();
-        }
-    }
+   private void fazerLogin() {
+
+    String usuario = txtUsuario.getText();
+    String senha = new String(txtSenha.getPassword());
+
+    Verificacao verificacao = new Verificacao();
+    String msg = verificacao.vitao(usuario, senha);
+
+    System.out.println("MSG = " + msg);
+
+    if (msg.equals("Login realizado com sucesso!")) {
+
+    JOptionPane.showMessageDialog(null, msg);
+
+    new TelaExtrato().setVisible(true);
+
+    dispose();
+
+} else {
+
+    JOptionPane.showMessageDialog(
+            null,
+            msg,
+            "Erro",
+            JOptionPane.ERROR_MESSAGE
+    );
+
+    txtSenha.setText("");
+    txtUsuario.setText("");
+}
+}
     
    private void abrirCadastro() {
 
