@@ -9,8 +9,8 @@ public class ModeloCliente {
     private String celular;
     private String email;
     private String senha;
-    private Integer cpf;
-    private Integer dtnascimento;
+    private String cpf;
+    private String dtnascimento;
 
     public Integer getId() {
         return id;
@@ -52,18 +52,18 @@ public class ModeloCliente {
         this.senha = senha;
     }
     
-    public Integer getCpf (){ //Adicionei o CPF para deixar o cliente mais unico, vemos depois
+    public String getCpf (){ //Adicionei o CPF para deixar o cliente mais unico, vemos depois
         return cpf;
     }
-    public void setCpf (Integer cpf){
+    public void setCpf (String cpf){
         this.cpf = cpf;
     }
     
-    public Integer getDtnascimento(){
+    public String getDtnascimento(){
         return dtnascimento;
     }
     
-    public void setDtnascimento (Integer dtnascimento){
+    public void setDtnascimento (String dtnascimento){
         this.dtnascimento = dtnascimento;
     }
         
