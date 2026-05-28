@@ -125,7 +125,7 @@ public class TelaLogin extends JFrame {
     Verificacao verificacao = new Verificacao();
     String msg = verificacao.vitao(usuario, senha);
 
-    System.out.println("MSG = " + msg);
+    System.out.println(msg);
 
     if (msg.equals("Login realizado com sucesso!")) {
 
