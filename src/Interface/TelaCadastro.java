@@ -1,5 +1,4 @@
 package Interface;
-import java.awt.Color;
 import BancoDados.ClienteBD;
 import BancoDados.ModeloCliente;
 import javax.swing.JOptionPane;
@@ -35,7 +34,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         logoMCB = new javax.swing.JLabel();
         label2 = new java.awt.Label();
         jSeparator1 = new javax.swing.JSeparator();
-        nascimento = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -53,9 +51,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         label3 = new java.awt.Label();
         celular = new javax.swing.JFormattedTextField();
+        jLabel10 = new javax.swing.JLabel();
+        nascimento = new javax.swing.JFormattedTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         nome1 = new javax.swing.JTextPane();
-        jLabel10 = new javax.swing.JLabel();
 
         jLabel5.setText("Celular:");
 
@@ -83,13 +82,6 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         label2.setFont(new java.awt.Font("Perpetua", 0, 8)); // NOI18N
         label2.setText("Macaw Bank - Liberdade para voar mais alto com o seu futuro financeiro.");
-
-        try {
-            nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        nascimento.addActionListener(this::nascimentoActionPerformed);
 
         jLabel1.setText("Nome:");
 
@@ -143,14 +135,21 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
         celular.addActionListener(this::celularActionPerformed);
 
+        jLabel10.setText("CPF:");
+
+        try {
+            nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        nascimento.addActionListener(this::nascimentoActionPerformed);
+
         nome1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 nome1FocusGained(evt);
             }
         });
         jScrollPane7.setViewportView(nome1);
-
-        jLabel10.setText("CPF:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,16 +182,15 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(celular, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(celular, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(confirmsenha, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel10)))
+                            .addComponent(jLabel10)
+                            .addComponent(nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(340, 340, 340)
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,12 +213,12 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +228,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -343,10 +341,6 @@ if (erros.length() > 0) {
 }
     }//GEN-LAST:event_buttoncadastrarActionPerformed
 
-    private void nascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nascimentoActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -370,6 +364,10 @@ if (erros.length() > 0) {
     private void confirmsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmsenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmsenhaActionPerformed
+
+    private void nascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nascimentoActionPerformed
 
     private void nome1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nome1FocusGained
         // TODO add your handling code here:
