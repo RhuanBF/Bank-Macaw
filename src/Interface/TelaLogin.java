@@ -19,7 +19,7 @@ public class TelaLogin extends JFrame {
     private void initComponents() {
         setTitle("Macaw Bank - Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450, 480); // Altura aumentada para 480
+        setSize(450, 480); 
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
