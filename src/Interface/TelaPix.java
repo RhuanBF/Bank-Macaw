@@ -38,10 +38,10 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -63,12 +63,21 @@ public class TelaPix extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1024, 768));
 
         btnChaves.setBackground(new java.awt.Color(51, 51, 51));
+<<<<<<< HEAD
+=======
+        btnChaves.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                btnChavesComponentResized(evt);
+            }
+        });
+>>>>>>> c033b0d (Arrumei algumas coisas)
         btnChaves.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pix");
-        btnChaves.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 33, -1));
+        jLabel1.setToolTipText("");
+        btnChaves.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 30, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SistemaBancarioFrontEnd/seta.png"))); // NOI18N
         btnChaves.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
@@ -84,7 +93,7 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SistemaBancarioFrontEnd/icon_money_96.png"))); // NOI18N
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
 
-        btnChaves.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 390, 90));
+        btnChaves.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 410, 90));
 
         jPanel4.setBackground(new java.awt.Color(102, 102, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,9 +102,6 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Receber");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 34, -1, -1));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SistemaBancarioFrontEnd/centavonovo.png"))); // NOI18N
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 190, 110));
 
         jPanel5.setBackground(new java.awt.Color(102, 102, 102));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,7 +117,10 @@ public class TelaPix extends javax.swing.JFrame {
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 580, 420, 100));
 
-        btnChaves.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 400, 80));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SistemaBancarioFrontEnd/centavonovo.png"))); // NOI18N
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 190, 110));
+
+        btnChaves.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 410, 80));
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 102));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,37 +138,38 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel11.setText("Saiba mais");
         jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 70, 20));
 
-        btnChaves.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, 410, 90));
+        btnChaves.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 410, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
                 .addContainerGap())
+=======
+            .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+>>>>>>> c033b0d (Arrumei algumas coisas)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btnChaves, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnChavesComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_btnChavesComponentResized
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChavesComponentResized
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

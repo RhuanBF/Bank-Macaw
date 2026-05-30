@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.UUID;
 
 public class ClienteBD {
     //Chamar o "ponteiro"
@@ -73,6 +74,79 @@ public class ClienteBD {
         catch (SQLException e) {
             System.out.println("Erro ao procurar cliente no BD. Erro: " + e);
             throw new RuntimeException(e);
+        }
+    }
+    
+    public void transferenciaPix(UUID id_cliente_remetente, double valor, String email, String celular, Connection conexao) {
+
+        String sqlbuscarecebedor = "SELECT id_cliente, nome_cliente, saldo_atual FROM cliente WHERE email = ? OR celular = ?";
+
+        String sqlinserirextrato = "INSERT INTO extrato (id_cliente, nome_cliente, valor, saldo_atual, pagamento, id_transfer, movimentacao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        String sqlatualizasaldorecebedor = "UPDATE cliente SET saldo_atual = saldo_atual + ? WHERE id_cliente = ?";
+
+        try {
+            conexao.setAutoCommit(false);
+
+            UUID idclienterecebedor = null;
+            String nomeclienterecebedor = null;
+            double saldoatualrecebedor = 0.0;//Valor vazio caso não tenha nada no banco
+
+            try (PreparedStatement psBusca = conexao.prepareStatement(sqlbuscarecebedor)) {
+                psBusca.setString(1, email);
+                psBusca.setString(2, celular);
+
+                try (ResultSet rs = psBusca.executeQuery()) {
+                    if (rs.next()) {
+                        // Se achou, pega os dados do recebedor
+                        idclienterecebedor = UUID.fromString(rs.getString("id_cliente"));
+                        nomeclienterecebedor = rs.getString("nome_cliente");
+                        saldoatualrecebedor = rs.getDouble("saldo_atual");
+                    } else {
+                        System.out.println("Chave pix (email e celular) não encontradas.");
+                        return; 
+                    }
+                }
+            }
+
+            double novoSaldoRecebedor = saldoatualrecebedor + valor;
+            try (PreparedStatement psAtualizaSaldo = conexao.prepareStatement(sqlatualizasaldorecebedor)) {
+                psAtualizaSaldo.setDouble(1, valor);
+                psAtualizaSaldo.setObject(2, idclienterecebedor);
+                psAtualizaSaldo.executeUpdate();
+            }
+
+            try (PreparedStatement psExtrato = conexao.prepareStatement(sqlinserirextrato)) {
+                UUID idTransferencia = UUID.randomUUID(); 
+
+                psExtrato.setObject(1, idclienterecebedor);         
+                psExtrato.setString(2, nomeclienterecebedor);        
+                psExtrato.setDouble(3, valor);                      
+                psExtrato.setDouble(4, novoSaldoRecebedor);          
+                psExtrato.setString(5, "PIX RECEBIDO");              
+                psExtrato.setObject(6, idTransferencia);             
+                psExtrato.setString(7, "ENTRADA");                  
+
+                psExtrato.executeUpdate();
+            }
+
+            conexao.commit();
+            System.out.println("Pix realizado com sucesso");
+
+        } catch (SQLException e) {
+            try {
+                conexao.rollback();// rollback significa que tudo será refeito para o padrão (inicio)
+                System.err.println("Erro na transação.");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            try {
+                conexao.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.print("Erro ao restaurar conexão padrão: " + e);
+            }
         }
     }
     

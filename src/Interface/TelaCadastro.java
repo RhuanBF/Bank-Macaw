@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 /**
  *
@@ -67,7 +68,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         confirmsenha = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         label3 = new java.awt.Label();
         celular = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -141,9 +141,6 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel8.setText("Confirmar senha:");
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\gusta\\Downloads\\ave.png")); // NOI18N
-        jLabel9.setText("jLabel9");
-
         label3.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         label3.setText("Preencha os dados para criar o seu usuário.");
 
@@ -212,9 +209,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                             .addComponent(nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(340, 340, 340)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -263,9 +258,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttoncadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addGap(11, 11, 11))
+                        .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))))
@@ -302,8 +295,6 @@ String textoNome = nome.getText();
 
 if (textoNome.trim().isEmpty()) {
     erros.append("- Digite seu nome\n");
-} else if (!textoNome.contains(" ")) {
-    erros.append("- Digite nome e sobrenome\n");
 }
 
 
@@ -343,6 +334,10 @@ if (erros.length() > 0) {
 
 } else {ModeloCliente.Cliente novo = new ModeloCliente().new Cliente();
 
+    //PROBLEMA RESOLVIDO PESSOAL - BANCO SUPORTA ID
+    UUID id_cliente = UUID.randomUUID(); //Dessa forma cria um UUID para o cliente
+
+    novo.setId(id_cliente);
     novo.setNome(nome.getText());
     novo.setCpf(nome1.getText());
     novo.setEmail(email.getText());
@@ -436,7 +431,6 @@ if (erros.length() > 0) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;

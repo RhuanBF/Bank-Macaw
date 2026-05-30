@@ -84,7 +84,6 @@ public class TelaLogin extends JFrame {
         
         btnEntrar.setBounds(150, 320, 150, 40);
         
-        // Cadastre-se com posição ajustada
         lblCadastrar.setBounds(150, 390, 150, 25);
         
         add(lblTitulo);

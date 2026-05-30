@@ -42,7 +42,6 @@ public class TesteConexaoBD {
             //Já que tem poucas então é tranquilo
             while(rs.next()){
 
-                System.out.println("ID: " + rs.getString("id"));
                 System.out.println("Nome: " + rs.getString("nome"));
                 System.out.println("Email: " + rs.getString("email"));
 

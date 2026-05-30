@@ -1,10 +1,11 @@
 
 package BancoDados;
+import java.util.UUID;
 
 public class ModeloCliente {
     
     public class Cliente {
-    private Integer id;
+    private UUID id;
     private String nome;
     private String celular;
     private String email;
@@ -12,11 +13,11 @@ public class ModeloCliente {
     private String cpf;
     private String dtnascimento;
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -66,6 +67,8 @@ public class ModeloCliente {
     public void setDtnascimento (String dtnascimento){
         this.dtnascimento = dtnascimento;
     }
+    
+    
         
     }
     
