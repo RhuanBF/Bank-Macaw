@@ -338,8 +338,8 @@ if (erros.length() > 0) {
     UUID id_cliente = UUID.randomUUID(); //Dessa forma cria um UUID para o cliente
 
     novo.setId(id_cliente);
-    novo.setNome(nome.getText());
-    novo.setCpf(nome1.getText());
+    novo.setNome(nome1.getText());
+    novo.setCpf(nome.getText());
     novo.setEmail(email.getText());
     novo.setCelular(celular.getText());
     novo.setSenha(new String(senha.getPassword()));
