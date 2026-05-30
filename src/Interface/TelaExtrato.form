@@ -34,7 +34,7 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="761" max="-2" attributes="0"/>
                           <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -171,7 +171,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ol&#xe1;, Jos&#xe9;!"/>
+        <Property name="text" type="java.lang.String" value="Ol&#xe1;, seja bem-vindo!"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">

@@ -19,6 +19,7 @@ public class TelaExtrato extends javax.swing.JFrame {
      */
     public TelaExtrato() {
         initComponents();
+
     }
 
     /**
@@ -104,7 +105,7 @@ public class TelaExtrato extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Olá, José!");
+        jLabel1.setText("Olá, seja bem-vindo!");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -176,7 +177,7 @@ public class TelaExtrato extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel1)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
