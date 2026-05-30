@@ -60,12 +60,9 @@ public class TelaPix extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
-        setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(1024, 768));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         btnChaves.setBackground(new java.awt.Color(51, 51, 51));
-        btnChaves.setForeground(new java.awt.Color(204, 204, 204));
         btnChaves.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
@@ -109,7 +106,6 @@ public class TelaPix extends javax.swing.JFrame {
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Proteção para transações");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
@@ -125,7 +121,6 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel9.setText("Ativar Seguro Pix");
         jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 19, -1, -1));
 
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Proteção para transações");
         jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
@@ -142,8 +137,8 @@ public class TelaPix extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
