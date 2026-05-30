@@ -60,17 +60,16 @@ public class TelaPix extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
+        setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         btnChaves.setBackground(new java.awt.Color(51, 51, 51));
-<<<<<<< HEAD
-=======
         btnChaves.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 btnChavesComponentResized(evt);
             }
         });
->>>>>>> c033b0d (Arrumei algumas coisas)
         btnChaves.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
@@ -144,14 +143,7 @@ public class TelaPix extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
-                .addContainerGap())
-=======
             .addComponent(btnChaves, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
->>>>>>> c033b0d (Arrumei algumas coisas)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -133,6 +133,7 @@ public class ClienteBD {
             conexao.commit();
             System.out.println("Pix realizado com sucesso");
 
+            //teste
         } catch (SQLException e) {
             try {
                 conexao.rollback();// rollback significa que tudo será refeito para o padrão (inicio)
