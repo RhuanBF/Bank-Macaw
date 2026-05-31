@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.UUID;
+import java.sql.Types;
 
 public class ClienteBD {
     //Chamar o "ponteiro"
@@ -30,23 +31,41 @@ public class ClienteBD {
     
     public void addCliente(Cliente novocliente){ //void significa que essa função não irá retornar nenhum valor
         //INSERT INTO é para adicionar valores na tabela
-        String s = "INSERT INTO clientes (nome, celular, senha, cpf, email, data)" +
-                "VALUES (?,?,?,?,?,?)";
+        String s = "INSERT INTO clientes_teste (uuid_cliente ,nome, celular, senha, cpf, email, data, saldo_atual)" +
+                "VALUES (?,?,?,?,?,?,?,?)";
+        
+        String sqlinserirextrato = "INSERT INTO extrato (uuid_cliente, nome_cliente) VALUES (?, ?)";
+
+        UUID id_cliente = novocliente.getId();
+        Double saldo = 0.00;
         
         //Uso do Try para caso dê erro.
         try{
-            PreparedStatement ps = conexao.prepareStatement(s);
             
-            //Agora vamos preencher os valores das colunas com o que o usuário preencheu no frontend
-            ps.setString(1,novocliente.getNome());
-            ps.setString(2, novocliente.getCelular());
-            ps.setString(3,novocliente.getSenha());
-            ps.setString(4,novocliente.getCpf());
-            ps.setString(5,novocliente.getEmail()); 
-            ps.setString(6,novocliente.getDtnascimento());
+            try (PreparedStatement psAtualizaSaldo = conexao.prepareStatement(sqlinserirextrato)) {
+                psAtualizaSaldo.setObject(1, id_cliente,Types.OTHER);
+                psAtualizaSaldo.setString(2, novocliente.getNome());
+                psAtualizaSaldo.executeUpdate();
+            }catch(SQLException e){
+                System.out.println("Erro ao tentar adicionar o novo clinte. Erro: " + e);
+                throw new RuntimeException(e);
+            }
+            
+            PreparedStatement ps = conexao.prepareStatement(s);
+                        
+            // Usa o Type para poder dizer ao Postgres que é um UUID
+            ps.setObject(1, id_cliente,Types.OTHER);//Setar Object pois o UUID é um objeto complexo            
+            ps.setString(2, novocliente.getNome());
+            ps.setString(3, novocliente.getCelular());
+            ps.setString(4, novocliente.getSenha());
+            ps.setString(5, novocliente.getCpf());
+            ps.setString(6, novocliente.getEmail()); 
+            ps.setString(7, novocliente.getDtnascimento()); // Coluna 'data'
+            ps.setDouble(8,saldo);
+            
             ps.execute();
             ps.close();
-            
+
         }catch (SQLException e){
             System.out.println("Erro ao tentar cadastrar o novo clinte. Erro: " + e);
             throw new RuntimeException(e);
