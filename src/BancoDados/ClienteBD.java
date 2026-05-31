@@ -75,7 +75,7 @@ public class ClienteBD {
     public boolean loginCliente(String usuario, String senha) {
         //O * significa "todas as colunas"
         //Nome e senha estão com o placeholder ? porque o JAVA que vai preencher
-        String sql = "SELECT * FROM Clientes WHERE nome = ? AND senha = ?";
+        String sql = "SELECT * FROM clientes_teste WHERE nome = ? AND senha = ?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, usuario);
