@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interface;
 
 import javax.swing.JOptionPane;
@@ -216,10 +213,18 @@ public class TelaExtrato extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new TelaLogin ().setVisible(true);
+         int resposta = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja realmente voltar para a tela de login?",
+            "Confirmar saída",
+            JOptionPane.YES_NO_OPTION
+    );
+
+    if (resposta == JOptionPane.YES_OPTION) {
+        new TelaLogin().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
