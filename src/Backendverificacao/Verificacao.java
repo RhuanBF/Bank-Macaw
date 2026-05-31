@@ -11,7 +11,7 @@ public class Verificacao {
         if (usuario.isEmpty() || senha.isEmpty()) {
             return " Dado inválido! Preencha todos os campos.";
         }
-
+        
         ClienteBD cliente = new ClienteBD();
         boolean login = cliente.loginCliente(usuario, senha);
 

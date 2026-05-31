@@ -31,8 +31,8 @@ public class ClienteBD {
     
     public void addCliente(Cliente novocliente){ //void significa que essa função não irá retornar nenhum valor
         //INSERT INTO é para adicionar valores na tabela
-        String s = "INSERT INTO clientes_teste (uuid_cliente ,nome, celular, senha, cpf, email, data, saldo_atual)" +
-                "VALUES (?,?,?,?,?,?,?,?)";
+        String s = "INSERT INTO clientes (uuid_cliente ,nome, celular, senha, cpf, email, data)" +
+                "VALUES (?,?,?,?,?,?,?)";
         
         String sqlinserirextrato = "INSERT INTO extrato (uuid_cliente, nome_cliente) VALUES (?, ?)";
 
@@ -61,7 +61,6 @@ public class ClienteBD {
             ps.setString(5, novocliente.getCpf());
             ps.setString(6, novocliente.getEmail()); 
             ps.setString(7, novocliente.getDtnascimento()); // Coluna 'data'
-            ps.setDouble(8,saldo);
             
             ps.execute();
             ps.close();
@@ -75,24 +74,25 @@ public class ClienteBD {
     public boolean loginCliente(String usuario, String senha) {
         //O * significa "todas as colunas"
         //Nome e senha estão com o placeholder ? porque o JAVA que vai preencher
-        String sql = "SELECT * FROM clientes_teste WHERE nome = ? AND senha = ?";
+        String sql = "SELECT * FROM clientes WHERE (email = ? OR celular = ?) AND senha = ?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setString(1, usuario);
-            ps.setString(2, senha);
+
+            if (usuario.contains("@")) {
+                ps.setString(1, usuario); 
+                ps.setString(2, "");      
+            } else {
+                ps.setString(1, "");     
+                ps.setString(2, usuario); 
+            }
+
+            ps.setString(3, senha);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                System.out.println("Cliente já existente no BD");
-                return true;
-            }
-            else {
-                System.out.println("Cliente não existente no BD");
-                return false;
-            }
-        }
-        catch (SQLException e) {
-            System.out.println("Erro ao procurar cliente no BD. Erro: " + e);
-            throw new RuntimeException(e);
+            return rs.next(); 
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao fazer login: " + e.getMessage());
+            return false;
         }
     }
     

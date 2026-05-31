@@ -37,9 +37,9 @@ public class TelaLogin extends JFrame {
         lblTitulo.setForeground(new Color(255, 102, 0));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         
-        txtUsuario = new JTextField();
+        txtUsuario = new JTextField("Coloque seu email ou celular"); // Texto inicial
         txtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
-        txtUsuario.setForeground(Color.BLACK);
+        txtUsuario.setForeground(Color.GRAY); // Cor cinza de placeholder
         txtUsuario.setBackground(Color.WHITE);
         txtUsuario.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0)));
         
@@ -114,6 +114,25 @@ public class TelaLogin extends JFrame {
                 lblCadastrar.setFont(new Font("Arial", Font.PLAIN, 12));
             }
         });
+        
+        txtUsuario.addFocusListener(new java.awt.event.FocusListener() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (txtUsuario.getText().equals("Coloque seu email ou celular")) {
+                    txtUsuario.setText("");
+                    txtUsuario.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (txtUsuario.getText().isEmpty()) {
+                    txtUsuario.setText("Coloque seu email ou celular");
+                    txtUsuario.setForeground(Color.GRAY);
+                }
+            }
+        });
+        
     }
     
    private void fazerLogin() {
@@ -121,6 +140,11 @@ public class TelaLogin extends JFrame {
     String usuario = txtUsuario.getText();
     String senha = new String(txtSenha.getPassword());
 
+    if (usuario.equals("Coloque seu email ou celular") || usuario.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, insira seu usuário.");
+        return;
+    }
+    
     Verificacao verificacao = new Verificacao();
     String msg = verificacao.vitao(usuario, senha);
 
