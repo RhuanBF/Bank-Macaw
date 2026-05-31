@@ -11,9 +11,13 @@ public class TelaExtrato extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaExtrato.class.getName());
 
-    /**
-     * Creates new form NewJFrame
-     */
+    public TelaExtrato(String usuario, double saldo) {
+        initComponents();
+                
+        jLabel1.setText("Olá " + usuario);
+        jLabel3.setText("R$" + saldo);
+  
+    }
     public TelaExtrato() {
         initComponents();
 
@@ -229,7 +233,7 @@ public class TelaExtrato extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(() -> new TelaExtrato().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaExtrato("Teste", 0.0).setVisible(true));//manter teste caso seja executado no Run FIle
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

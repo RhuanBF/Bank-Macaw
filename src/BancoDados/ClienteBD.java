@@ -96,6 +96,71 @@ public class ClienteBD {
         }
     }
     
+    public double returnSaldo(String usuario) {
+        double saldo = 0.0; 
+
+        String sql = "SELECT extrato.saldo_atual FROM extrato JOIN clientes ON extrato.uuid_cliente = clientes.uuid_cliente WHERE clientes.email = ? OR clientes.celular = ?";
+
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            if (usuario.contains("@")) {
+                ps.setString(1, usuario); 
+                ps.setString(2, "");      
+            } else {
+                ps.setString(1, "");      
+                ps.setString(2, usuario); 
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                saldo = rs.getDouble("saldo_atual");
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar saldo: " + e.getMessage());
+        }
+
+        return saldo; 
+    }
+    
+    public String returnNome(String usuario) {
+
+        String nome = "";
+
+        String sql = "SELECT nome FROM clientes WHERE email = ? OR celular = ?";
+
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            if (usuario.contains("@")) {
+                ps.setString(1, usuario); 
+                ps.setString(2, "");     
+            } else {
+                ps.setString(1, "");      
+                ps.setString(2, usuario); 
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                nome = rs.getString("nome");
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar nome: " + e.getMessage());
+        }
+
+        return nome;
+    }
+    
     public void transferenciaPix(UUID id_cliente_remetente, double valor, String email, String celular, Connection conexao) {
 
         String sqlbuscarecebedor = "SELECT id_cliente, nome_cliente, saldo_atual FROM cliente WHERE email = ? OR celular = ?";

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.Cursor;
 import Backendverificacao.Verificacao;
+import BancoDados.ClienteBD;
+
 public class TelaLogin extends JFrame {
     
     private JTextField txtUsuario;
@@ -147,29 +149,32 @@ public class TelaLogin extends JFrame {
     
     Verificacao verificacao = new Verificacao();
     String msg = verificacao.vitao(usuario, senha);
-
     System.out.println(msg);
+    
+    ClienteBD bd = new ClienteBD();
+    double saldo_at = bd.returnSaldo(usuario);
+    String nome_usuario = bd.returnNome(usuario);
 
     if (msg.equals("Login realizado com sucesso!")) {
 
     JOptionPane.showMessageDialog(null, msg);
 
-    new TelaExtrato().setVisible(true);
+    new TelaExtrato(nome_usuario, saldo_at).setVisible(true);
 
     dispose();
 
-} else {
+    } else {
 
-    JOptionPane.showMessageDialog(
-            null,
-            msg,
-            "Erro",
-            JOptionPane.ERROR_MESSAGE
-    );
+        JOptionPane.showMessageDialog(
+                null,
+                msg,
+                "Erro",
+                JOptionPane.ERROR_MESSAGE
+        );
 
-    txtSenha.setText("");
-    txtUsuario.setText("");
-}
+        txtSenha.setText("");
+        txtUsuario.setText("");
+    }
 }
     
    private void abrirCadastro() {
